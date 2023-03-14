@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    width: 100%;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.wrapper {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #e5e5e5;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh
+}
+
+.main {
+    width: 100%;
+    flex-grow: 1;
+
+}
