@@ -5,6 +5,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     position: absolute;
     width: 100%;
+    background-color: #e5e5e5;
 }
 
 code {
@@ -12,11 +13,10 @@ code {
 }
 
 .wrapper {
+    display: flex;
     min-height: 100vh;
     overflow: hidden;
-    display: flex;
     flex-direction: column;
-    background-color: #e5e5e5;
 }
 
 .app {

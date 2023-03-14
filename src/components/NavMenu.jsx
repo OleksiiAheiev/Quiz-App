@@ -12,7 +12,7 @@ const NavWrapper = styled(Box)(() => ({
     width: '250px',
     paddingLeft: '40px',
     paddingTop: '15px',
-    backgroundColor: "#fff"
+    backgroundColor: '#fff',
 }));
 
 const QuizButton = styled(Button)(() => ({
@@ -36,15 +36,15 @@ function NavMenu() {
     }, []);
 
     return (
-        <NavWrapper className='nav-menu'
+        <NavWrapper
+            className="nav-menu"
             sx={{
-                '& > *': { mb: 3 },
+                '& > *': { mb: 3.1 },
                 '& > *:last-child': { my: 0 },
             }}
         >
-            <>
-                <img style={{ width: '120px' }} src={logo} alt="logo" />
-            </>
+            <img style={{ width: '120px' }} src={logo} alt="logo" />
+
             <QuizButton variant="contained" size="medium">
                 <Typography>Create Quiz</Typography>
             </QuizButton>

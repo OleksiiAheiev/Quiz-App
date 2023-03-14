@@ -6,6 +6,7 @@ const CardStyle = styled(Card)(() => ({
     width: '300px',
     paddingLeft: '15px',
     paddingRight: '15px',
+    fontWeight: 'bold',
 }));
 
 const dFlex = {
@@ -15,6 +16,7 @@ const dFlex = {
 
 function Cards({ card, id }) {
     let topic = card.category_id === 0 ? 'HTML' : card.category_id === 1 ? 'CSS' : card.category_id === 2 ? 'JS' : '';
+
     return (
         <CardStyle>
             <div style={dFlex}>
@@ -23,9 +25,9 @@ function Cards({ card, id }) {
             </div>
 
             <CardContent>
-                <Typography>{card.question}</Typography>
+                <Typography fontWeight="bold">{card.question}</Typography>
 
-                <RadioButtonsGroup choices={card.choices} />
+                <RadioButtonsGroup options={card.choices} />
             </CardContent>
         </CardStyle>
     );

@@ -5,9 +5,12 @@ import API from '../components/variables';
 import Cards from '../components/Cards';
 
 const MainWrapper = styled(Box)(() => ({
-    marginTop: '50px',
-    marginLeft: '30px',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 320px)',
+    margin: '50px 60px',
+    gap: '90px',
 }));
+
 function Hero() {
     let [cards, setCards] = useState([]);
 

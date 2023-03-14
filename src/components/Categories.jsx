@@ -14,7 +14,6 @@ const Buttons = styled(Button)(() => ({
 }));
 
 function Categories({ category, id }) {
-    //console.log(id);
     return (
         <Buttons variant="contained" value={category.id} key={id}>
             <Typography>{category.category_name}</Typography>
