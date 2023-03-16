@@ -16,8 +16,8 @@ function BaseDrawer({ open, handleClose }) {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await quizes.fetchCategories()
-                setCategories(data)
+                const { data } = await quizes.fetchCategories();
+                setCategories(data);
             } catch (err) {
                 console.error(err);
             }

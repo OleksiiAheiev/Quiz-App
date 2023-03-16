@@ -28,13 +28,13 @@ function NavMenu() {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await quizes.fetchCategories()
-                setCategories(data)
+                const { data } = await quizes.fetchCategories();
+                setCategories(data);
             } catch (err) {
                 console.error(err);
             }
-        })()
-    } ,[])
+        })();
+    }, []);
 
     return (
         <NavWrapper className="nav-menu" sx={{ display: { xs: 'none', md: 'none', lg: 'block' } }}>

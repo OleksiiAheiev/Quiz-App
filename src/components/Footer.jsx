@@ -18,7 +18,7 @@ const FooterStyles = styled(Box)(() => ({
     zIndex: '100',
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '60px 40px 0'
+    padding: '60px 40px 0',
 }));
 
 function Footer() {
