@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography, styled } from '@mui/material';
 import Button from '@mui/material/Button';
 
@@ -15,7 +16,7 @@ const Buttons = styled(Button)(() => ({
 
 function Categories({ category, id }) {
     return (
-        <Buttons variant="contained" value={category.id} key={id}>
+        <Buttons variant="contained" size="small" value={id}>
             <Typography>{category.category_name}</Typography>
         </Buttons>
     );

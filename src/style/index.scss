@@ -3,9 +3,9 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    position: absolute;
     width: 100%;
     background-color: #e5e5e5;
+    position: relative;
 }
 
 code {
@@ -21,11 +21,21 @@ code {
 
 .app {
     display: flex;
-    min-height: 100vh
+    min-height: 100vh;
 }
 
 .main {
     width: 100%;
     flex-grow: 1;
+}
 
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alertStyles {
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
