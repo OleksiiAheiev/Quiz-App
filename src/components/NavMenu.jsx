@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, styled } from '@mui/material';
 import Button from '@mui/material/Button';
-import logo from '../logo.jpg';
-import axios from 'axios';
-import API from './variables';
+import logo from '../logo.webp';
 import Categories from './Categories';
+import { quizes } from '../api';
 
 const NavWrapper = styled(Box)(() => ({
-    display: 'flex',
-    flexDirection: 'column',
     width: '250px',
-    paddingLeft: '40px',
+    paddingLeft: '30px',
     paddingTop: '15px',
     backgroundColor: '#fff',
 }));
@@ -30,27 +27,29 @@ function NavMenu() {
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get(`${API}/categories`);
-            setCategories(data);
+            try {
+                const { data } = await quizes.fetchCategories();
+                setCategories(data);
+            } catch (err) {
+                console.error(err);
+            }
         })();
     }, []);
 
     return (
-        <NavWrapper
-            className="nav-menu"
-            sx={{
-                '& > *': { mb: 3.1 },
-                '& > *:last-child': { my: 0 },
-            }}
-        >
-            <img style={{ width: '120px' }} src={logo} alt="logo" />
-
-            <QuizButton variant="contained" size="medium">
+        <NavWrapper className="nav-menu" sx={{ display: { xs: 'none', md: 'none', lg: 'block' } }}>
+            <img
+                style={{ width: '120px' }
+                } src={logo}
+                alt="logo" />
+            <QuizButton
+                variant="contained"
+                size="small"
+                sx={{ mb: 3 }}>
                 <Typography>Create Quiz</Typography>
             </QuizButton>
-
             {categories.map((category, index) => (
-                <Categories key={index} category={category} id={index} />
+                <Categories category={category} id={index} key={index} />
             ))}
         </NavWrapper>
     );
