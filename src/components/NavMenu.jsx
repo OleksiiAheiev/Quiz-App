@@ -38,8 +38,14 @@ function NavMenu() {
 
     return (
         <NavWrapper className="nav-menu" sx={{ display: { xs: 'none', md: 'none', lg: 'block' } }}>
-            <img style={{ width: '120px' }} src={logo} alt="logo" />
-            <QuizButton variant="contained" size="small" sx={{ mb: 3 }}>
+            <img
+                style={{ width: '120px' }
+                } src={logo}
+                alt="logo" />
+            <QuizButton
+                variant="contained"
+                size="small"
+                sx={{ mb: 3 }}>
                 <Typography>Create Quiz</Typography>
             </QuizButton>
             {categories.map((category, index) => (

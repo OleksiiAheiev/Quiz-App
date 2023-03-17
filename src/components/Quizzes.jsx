@@ -11,6 +11,7 @@ import {
 import RadioButtonsGroup from './RadioButtonsGroup';
 import BaseModal from './BaseModal';
 import DescriptionAlerts from './DescriptionAlert';
+import typeQuiz from './constants';
 
 const CardStyle = styled(Card)(() => ({
     position: 'relative',
@@ -21,12 +22,6 @@ const CardStyle = styled(Card)(() => ({
 }));
 
 function Quizzes({ card, id }) {
-    const typeQuiz = {
-        0: 'HTML',
-        1: 'CSS',
-        2: 'JS',
-    };
-
     const [modal, setModal] = useState(false);
     const handleOpen = () => setModal(true);
     const handleClose = () => setModal(false);
@@ -46,7 +41,11 @@ function Quizzes({ card, id }) {
                     <h5>{typeQuiz[card.category_id]}</h5>
                     <h5>#{id}</h5>
                 </div>
-                <CardMedia component="img" height="194" image={card.image} alt={typeQuiz[card.category_id]} />
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={card.image}
+                    alt={typeQuiz[card.category_id]} />
                 <CardContent sx={{ mb: 3 }}>
                     <Typography fontWeight="bold">{card.question}</Typography>
                     <RadioButtonsGroup options={card.choices} />

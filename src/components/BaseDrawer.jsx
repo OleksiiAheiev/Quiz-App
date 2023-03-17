@@ -25,9 +25,15 @@ function BaseDrawer({ open, handleClose }) {
     }, []);
 
     return (
-        <Drawer anchor="left" open={open} onClose={handleClose}>
+        <Drawer
+            anchor="left"
+            open={open}
+            onClose={handleClose}>
             <Box p={4} width="200px">
-                <img style={{ width: '120px' }} src={logo} alt="logo" />
+                <img
+                    style={{ width: '120px' }}
+                    src={logo}
+                    alt="logo" />
                 <Grid sx={{ mb: 3 }}>
                     <Button
                         variant="contained"

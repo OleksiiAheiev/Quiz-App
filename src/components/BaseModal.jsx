@@ -8,6 +8,7 @@ import {
     Typography
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import typeQuiz from './constants';
 
 const style = {
     position: 'absolute',
@@ -20,13 +21,9 @@ const style = {
     boxShadow: 24,
 };
 
-function BaseModal({ open, handleClose, card }) {
-    const typeQuiz = {
-        0: 'HTML',
-        1: 'CSS',
-        2: 'JS',
-    };
-
+function BaseModal({
+    open, handleClose, card
+}) {
     return (
         <div>
             <Modal
@@ -54,14 +51,24 @@ function BaseModal({ open, handleClose, card }) {
                             <Typography variant="h6">{typeQuiz[card.category_id]}</Typography>
                             <Typography variant="h6">#{card.id + 1}</Typography>
                         </div>
-                        <CardMedia component="img" height="194" image={card.image} alt={typeQuiz[card.category_id]} />
+                        <CardMedia
+                            component="img"
+                            height="194"
+                            image={card.image}
+                            alt={typeQuiz[card.category_id]} />
                         <Typography variant="h5" mt={2}>
                             Quiz description
                         </Typography>
-                        <Typography variant="h6" id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+                        <Typography
+                            variant="h6"
+                            id="keep-mounted-modal-description"
+                            sx={{ mt: 2 }}>
                             {card.description}
                         </Typography>
-                        <Typography variant="h6" id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+                        <Typography
+                            variant="h6"
+                            id="keep-mounted-modal-description"
+                            sx={{ mt: 2 }}>
                             Quiz difficulty: <span style={{ fontWeight: 'bold' }}>{card.difficulty}</span>
                         </Typography>
                     </Card>
