@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { Component } from 'react';
 import { Box, Typography, styled } from '@mui/material';
 import Button from '@mui/material/Button';
 import logo from '../logo.webp';
 import Categories from './Categories';
-import { quizes } from '../api';
+import { quizes } from '../api/api';
 
 const NavWrapper = styled(Box)(() => ({
     width: '250px',
@@ -21,38 +21,33 @@ const QuizButton = styled(Button)(() => ({
         color: '#000',
     },
 }));
+class NavMenu extends Component {
+    state = {
+        categories: [],
+    };
 
-function NavMenu() {
-    let [categories, setCategories] = useState([]);
+    render() {
+        const { categories } = this.state;
+        
+        return (
+            <NavWrapper className="nav-menu" sx={{ display: { xs: 'none', md: 'none', lg: 'block' } }}>
+                <img style={{ width: '120px' }} src={logo} alt="logo" />
+                <QuizButton variant="contained" size="small" sx={{ mb: 3 }}>
+                    <Typography>Create Quiz</Typography>
+                </QuizButton>
+                {categories.map((category) => (
+                    <Categories category={category} id={category.id} key={category.id} />
+                ))}
+            </NavWrapper>
+        );
+    }
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await quizes.fetchCategories();
-                setCategories(data);
-            } catch (err) {
-                console.error(err);
-            }
-        })();
-    }, []);
-
-    return (
-        <NavWrapper className="nav-menu" sx={{ display: { xs: 'none', md: 'none', lg: 'block' } }}>
-            <img
-                style={{ width: '120px' }
-                } src={logo}
-                alt="logo" />
-            <QuizButton
-                variant="contained"
-                size="small"
-                sx={{ mb: 3 }}>
-                <Typography>Create Quiz</Typography>
-            </QuizButton>
-            {categories.map((category, index) => (
-                <Categories category={category} id={index} key={index} />
-            ))}
-        </NavWrapper>
-    );
+    componentDidMount() {
+        quizes
+            .fetchCategories()
+            .then(categories => this.setState({ ...this.state, categories }))
+            .catch(err => console.error(err));
+    }
 }
 
 export default NavMenu;

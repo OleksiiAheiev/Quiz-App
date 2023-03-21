@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import {
     Typography,
     styled,
@@ -21,26 +21,28 @@ const FooterStyles = styled(Box)(() => ({
     padding: '60px 40px 0',
 }));
 
-function Footer() {
-    return (
-        <FooterStyles>
-            <Typography>© 2023 Quizz Inc.</Typography>
-            <Stack direction="row" spacing={2}>
-                <Avatar>
-                    <FacebookIcon />
-                </Avatar>
-                <Avatar>
-                    <InstagramIcon />
-                </Avatar>
-                <Avatar>
-                    <TwitterIcon />
-                </Avatar>
-                <Avatar>
-                    <YouTubeIcon />
-                </Avatar>
-            </Stack>
-        </FooterStyles>
-    );
+class Footer extends Component {
+    render() {
+        return (
+            <FooterStyles>
+                <Typography>© 2023 Quizz Inc.</Typography>
+                <Stack direction="row" spacing={2}>
+                    <Avatar>
+                        <FacebookIcon />
+                    </Avatar>
+                    <Avatar>
+                        <InstagramIcon />
+                    </Avatar>
+                    <Avatar>
+                        <TwitterIcon />
+                    </Avatar>
+                    <Avatar>
+                        <YouTubeIcon />
+                    </Avatar>
+                </Stack>
+            </FooterStyles>
+        );
+    }
 }
 
 export default Footer;

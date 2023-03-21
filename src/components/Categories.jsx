@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { Typography, styled } from '@mui/material';
 import Button from '@mui/material/Button';
 
@@ -14,12 +14,16 @@ const Buttons = styled(Button)(() => ({
     },
 }));
 
-function Categories({ category, id }) {
-    return (
-        <Buttons variant="contained" size="small" value={id}>
-            <Typography>{category.category_name}</Typography>
-        </Buttons>
-    );
+class Categories extends Component {
+    render() {
+        const { category, id } = this.props;
+
+        return (
+            <Buttons variant="contained" size="small" value={id}>
+                <Typography>{category.category_name}</Typography>
+            </Buttons>
+        );
+    }
 }
 
 export default Categories;

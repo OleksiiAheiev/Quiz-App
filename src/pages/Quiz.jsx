@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { Component } from 'react';
 import { styled, Grid } from '@mui/material';
 import Quizzes from '../components/Quizzes';
-import { quizes } from '../api/index';
+import { quizes } from '../api/api';
 
 const MainGrid = styled(Grid)(() => ({
     marginTop: '30px',
@@ -10,29 +10,31 @@ const MainGrid = styled(Grid)(() => ({
     justifyContent: 'center',
 }));
 
-function Quiz() {
-    const [cards, setCards] = useState([]);
+class Quiz extends Component {
+    state = {
+        cards: [],
+    };
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await quizes.fetchQuestions();
-                setCards(data);
-            } catch (err) {
-                console.error(err);
-            }
-        })();
-    }, []);
+    render() {
+        const { cards } = this.state;
+        
+        return (
+            <MainGrid container>
+                {cards.map((card, index) => (
+                    <Grid item key={index} md={4} lg={5} xl={3}>
+                        <Quizzes card={card} id={card.id + 1} />
+                    </Grid>
+                ))}
+            </MainGrid>
+        );
+    }
 
-    return (
-        <MainGrid container>
-            {cards.map((card, index) => (
-                <Grid item key={index} md={4} lg={5} xl={3}>
-                    <Quizzes card={card} id={index + 1} />
-                </Grid>
-            ))}
-        </MainGrid>
-    );
+    componentDidMount() {
+        quizes
+            .fetchQuestions()
+            .then(cards => this.setState({ ...this.state, cards }))
+            .catch(err => console.error(err));
+    }
 }
 
 export default Quiz;

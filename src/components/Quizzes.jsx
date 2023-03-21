@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 import styled from '@emotion/styled';
 import {
     Button,
@@ -20,77 +20,93 @@ const CardStyle = styled(Card)(() => ({
     padding: '10px',
     fontWeight: 'bold',
 }));
-
-function Quizzes({ card, id }) {
-    const [modal, setModal] = useState(false);
-    const handleOpen = () => setModal(true);
-    const handleClose = () => setModal(false);
-
-    const [showAlert, setShowAlert] = useState(false);
-    const handleQuizStart = () => {
-        setShowAlert(true);
-        setTimeout(() => {
-            setShowAlert(false);
-        }, 3000);
+class Quizzes extends Component {
+    state = {
+        isModalOpen: false,
+        showAlert: false,
     };
 
-    return (
-        <>
-            <CardStyle>
-                <div className="d-flex">
-                    <h5>{typeQuiz[card.category_id]}</h5>
-                    <h5>#{id}</h5>
-                </div>
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={card.image}
-                    alt={typeQuiz[card.category_id]} />
-                <CardContent sx={{ mb: 3 }}>
-                    <Typography fontWeight="bold">{card.question}</Typography>
-                    <RadioButtonsGroup options={card.choices} />
-                </CardContent>
-                <CardActions style={{ position: 'absolute', bottom: 2, gap: 5 }}>
-                    <Button
-                        onClick={handleQuizStart}
-                        sx={{
-                            border: '#6c4298 1px solid',
-                            backgroundColor: '#6c4298',
-                            color: '#fff',
-                            '&:hover': {
-                                backgroundColor: 'rgb(136 84 192 / .8)',
-                                color: '#000',
-                            },
-                        }}
-                        size="small"
-                        type="submit"
-                        variant="outlined"
-                    >
-                        <Typography>Start quiz</Typography>
-                    </Button>
-                    <Button
-                        onClick={handleOpen}
-                        sx={{
-                            border: '#6c4298 1px solid',
-                            backgroundColor: '#6c4298',
-                            color: '#fff',
-                            '&:hover': {
-                                backgroundColor: 'rgb(136 84 192 / .8)',
-                                color: '#000',
-                            },
-                        }}
-                        size="small"
-                        type="submit"
-                        variant="outlined"
-                    >
-                        <Typography>Show More</Typography>
-                    </Button>
-                </CardActions>
-                <BaseModal open={modal} handleClose={handleClose} card={card} />
-            </CardStyle>
-            {showAlert && <DescriptionAlerts />}
-        </>
-    );
+    constructor() {
+        super();
+        
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleQuizStart = this.handleQuizStart.bind(this);
+    }
+
+    render() {
+        const { card, id } = this.props;
+        const { isModalOpen, showAlert } = this.state;
+
+        return (
+            <>
+                <CardStyle>
+                    <div className="d-flex">
+                        <h5>{typeQuiz[card.category_id]}</h5>
+                        <h5>#{id}</h5>
+                    </div>
+                    <CardMedia component="img" height="194" image={card.image} alt={typeQuiz[card.category_id]} />
+                    <CardContent sx={{ mb: 3 }}>
+                        <Typography fontWeight="bold">{card.question}</Typography>
+                        <RadioButtonsGroup options={card.choices} />
+                    </CardContent>
+                    <CardActions style={{ position: 'absolute', bottom: 2, gap: 5 }}>
+                        <Button
+                            onClick={this.handleQuizStart}
+                            sx={{
+                                border: '#6c4298 1px solid',
+                                backgroundColor: '#6c4298',
+                                color: '#fff',
+                                '&:hover': {
+                                    backgroundColor: 'rgb(136 84 192 / .8)',
+                                    color: '#000',
+                                },
+                            }}
+                            size="small"
+                            type="submit"
+                            variant="outlined"
+                        >
+                            <Typography>Start quiz</Typography>
+                        </Button>
+                        <Button
+                            onClick={this.handleOpen}
+                            sx={{
+                                border: '#6c4298 1px solid',
+                                backgroundColor: '#6c4298',
+                                color: '#fff',
+                                '&:hover': {
+                                    backgroundColor: 'rgb(136 84 192 / .8)',
+                                    color: '#000',
+                                },
+                            }}
+                            size="small"
+                            type="submit"
+                            variant="outlined"
+                        >
+                            <Typography>Show More</Typography>
+                        </Button>
+                    </CardActions>
+                    <BaseModal open={isModalOpen} handleClose={this.handleClose} card={card} />
+                </CardStyle>
+                {showAlert && <DescriptionAlerts />}
+            </>
+        );
+    }
+
+    handleOpen() {
+        this.setState({ isModalOpen: true });
+    }
+
+    handleClose() {
+        this.setState({ isModalOpen: false });
+    }
+
+    handleQuizStart() {
+        this.setState({ showAlert: true });
+        setTimeout(() => {
+            this.setState({ showAlert: false });
+        }, 3000);
+    }
 }
 
 export default Quizzes;

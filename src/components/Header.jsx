@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 import {
     Box,
     Typography,
@@ -15,42 +15,60 @@ const HeaderStyles = styled(Box)(() => ({
     flexGrow: 1,
     zIndex: '100',
 }));
+class Header extends Component {
+    state = {
+        isDrawerOpen: false,
+    };
 
-function Header() {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const handleOpen = () => setIsDrawerOpen(true);
-    const handleClose = () => setIsDrawerOpen(false);
+    constructor() {
+        super();
 
-    return (
-        <>
-            <HeaderStyles>
-                <AppBar position="static" sx={{ boxShadow: '0px 4px 4px -2px #ababab' }}>
-                    <Toolbar sx={{ background: '#fff', color: '#6c4298' }}>
-                        <IconButton
-                            onClick={handleOpen}
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 1, display: { lg: 'none' } }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography
-                            variant="h5"
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
-                        >
-                            Let's start the Quiz!
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                            QUIZZ
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </HeaderStyles>
-            <BaseDrawer open={isDrawerOpen} handleClose={handleClose} />
-        </>
-    );
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    render() {
+        const { isDrawerOpen } = this.state;
+
+        return (
+            <>
+                <HeaderStyles>
+                    <AppBar position="static" sx={{ boxShadow: '0px 4px 4px -2px #ababab' }}>
+                        <Toolbar sx={{ background: '#fff', color: '#6c4298' }}>
+                            <IconButton
+                                onClick={this.handleOpen}
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 1, display: { lg: 'none' } }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography
+                                variant="h5"
+                                component="div"
+                                sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}
+                            >
+                                Let's start the Quiz!
+                            </Typography>
+                            <Typography variant="h5" component="div">
+                                QUIZZ
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                </HeaderStyles>
+                <BaseDrawer open={isDrawerOpen} handleClose={this.handleClose} />
+            </>
+        );
+    }
+
+    handleOpen() {
+        this.setState({ isDrawerOpen: true });
+    }
+
+    handleClose() {
+        this.setState({ isDrawerOpen: false });
+    }
 }
 
 export default Header;
