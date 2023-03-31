@@ -1,21 +1,19 @@
-import Header from './components/Header';
-import NavMenu from './components/NavMenu';
-import Quiz from './pages/Quiz';
-import Footer from './components/Footer';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ScreenRoutes from './components/ScreenRoutes';
+import NotFound from './pages/NotFound';
 
 function App() {
-    return (
-        <div className="wrapper">
-            <div className="app">
-                <NavMenu />
-                <div className="main">
-                    <Header />
-                    <Quiz />
-                    <Footer />
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path='/quiz/*' element={<ScreenRoutes />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

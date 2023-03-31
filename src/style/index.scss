@@ -12,21 +12,17 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.wrapper {
-    display: flex;
-    min-height: 100vh;
-    overflow: hidden;
-    flex-direction: column;
-}
-
 .app {
     display: flex;
     min-height: 100vh;
 }
 
 .main {
+    display: flex;
     width: 100%;
     flex-grow: 1;
+    overflow: hidden;
+    flex-direction: column;
 }
 
 .d-flex {
@@ -38,4 +34,50 @@ code {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+.main-screen-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+
+    &__item {
+        min-width: 300px;
+    }
+}
+
+.quiz-card {
+    position: relative;
+    min-width: 300px;
+    border-radius: 5px;
+    height: 100%;
+    padding: 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+    .main-screen-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+
+        &__item {
+            min-width: 300px;
+        }
+    }
+
+    .quiz-card {
+        min-width: 700px;
+    }
+}
+
+@media screen and (min-width: 991px) {
+    .main-screen-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+
+        &__item {
+            min-width: 285px;
+        }
+    }
 }
