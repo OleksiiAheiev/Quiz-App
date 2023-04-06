@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
+import { categoriesAction } from '../store/modules/categories';
 
 const Search = styled('div')(() => ({
   width: '75%',
@@ -32,12 +34,18 @@ const StyledTextField = styled(TextField)(() => ({
 }));
 
 function SearchField() {
+  const dispatch = useDispatch();
+  const handleChangeSearch = (event) => {
+    dispatch(categoriesAction.filterCategories({ search: event.target.value }));
+  };
+
   return (
     <Search>
       <StyledTextField
         label="Search quizzes for any topic"
         variant="outlined"
         size="medium"
+        onChange={handleChangeSearch}
       />
     </Search>
   );

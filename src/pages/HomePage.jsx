@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import CategotyQuiz from '../components/CategotyQuiz';
-import { quizes } from '../api/api';
 import SearchField from '../components/SearchField';
+import { categoriesThunks } from '../store/modules/categories';
 
 const StyledHomePage = styled(Box)(() => ({
   display: 'flex',
@@ -25,15 +26,15 @@ const StyledBox = styled(Box)(() => ({
 }));
 
 function HomePage() {
-  const [allQuizes, setAllQuizes] = useState([]);
+  const { filterCategories } = useSelector((state) => state.categoriesReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await quizes.fetchCategories();
-        setAllQuizes(data);
+        await dispatch(categoriesThunks.fetchCategories());
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     })();
   }, []);
@@ -52,7 +53,7 @@ function HomePage() {
         <SearchField />
       </StyledBox>
       <div className='main-screen-grid'>
-        {allQuizes.map((card) => (
+        {filterCategories.map((card) => (
           <div className='main-screen-grid__item' key={card.id}>
             <CategotyQuiz card={card} id={card.id} />
           </div>

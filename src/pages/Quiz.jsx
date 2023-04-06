@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { styled, Box } from '@mui/material';
-import { quizes } from '../api/api';
 import Question from '../components/Question';
 import QuizResults from '../components/QuizResult';
-import Loading from '../components/Loading';
+import Loading from './Loading';
+import { quizThunks } from '../store/modules/quizzes';
 
 const StyledQuizPage = styled(Box)(() => ({
   display: 'flex',
@@ -16,7 +17,8 @@ const StyledQuizPage = styled(Box)(() => ({
 }));
 
 function Quiz() {
-  const [cards, setCards] = useState([]);
+  const { cards } = useSelector((state) => state.quizReducer);
+  const dispatch = useDispatch();
   const { name } = useParams();
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -29,13 +31,17 @@ function Quiz() {
     quizTime: 0,
   });
 
-  const fetchQuizes = {
-    html: quizes.fetchHtml,
-    css: quizes.fetchCss,
-    java_script: quizes.fetchJs,
-  };
-
   const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await dispatch(quizThunks.fetchQuizzes(name));
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, [name]);
 
   useEffect(() => {
     let interval;
@@ -46,17 +52,6 @@ function Quiz() {
     }
     return () => clearInterval(interval);
   }, [showResults]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await fetchQuizes[name]();
-        setCards(data);
-      } catch (err) {
-        console.error(err);
-      }
-    })();
-  }, [name]);
 
   const handleQuizEnd = () => {
     setResult((prev) => ({

@@ -4,8 +4,8 @@ import MainTemplate from './Templates/MainTemplate';
 import Quiz from '../pages/Quiz';
 import HomePage from '../pages/HomePage';
 import NotFound from '../pages/NotFound';
-import CreateQuiz from './CreateQuiz';
-import Favorite from './Favorite';
+import CreateQuiz from '../pages/CreateQuiz';
+import Favorite from '../pages/Favorite';
 
 function ScreenRoutes() {
   return (
