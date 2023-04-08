@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography, Button } from '@mui/material';
 import styled from '@emotion/styled';
+import { categoriesThunks } from '../../store/modules/categories';
 import logo from '../../logo.webp';
 import CategoryBtns from '../CategoryBtns';
-import { quizes } from '../../api/api';
 
 const NavWrapper = styled(Box)(() => ({
   padding: '0 20px',
@@ -33,15 +34,15 @@ const ButtonWrapper = styled.div(() => ({
 }));
 
 function NavMenu() {
-  const [categories, setCategories] = useState([]);
+  const { categories } = useSelector((state) => state.categoriesReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await quizes.fetchCategories();
-        setCategories(data);
+        await dispatch(categoriesThunks.fetchCategories());
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     })();
   }, []);

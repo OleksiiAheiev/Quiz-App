@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Button,
@@ -10,7 +11,7 @@ import {
 import styled from '@emotion/styled';
 import CategoryBtns from './CategoryBtns';
 import logo from '../logo.webp';
-import { quizes } from '../api/api';
+import { categoriesThunks } from '../store/modules/categories';
 
 const QuizButton = styled(Button)(() => ({
   width: '110px',
@@ -34,15 +35,15 @@ const ButtonWrapper = styled.div(() => ({
 }));
 
 function BaseDrawer({ open, handleClose }) {
-  const [categories, setCategories] = useState([]);
+  const { categories } = useSelector((state) => state.categoriesReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await quizes.fetchCategories();
-        setCategories(data);
+        await dispatch(categoriesThunks.fetchCategories());
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     })();
   }, []);

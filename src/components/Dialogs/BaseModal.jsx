@@ -47,7 +47,7 @@ function BaseModal({
           </IconButton>
           <Card sx={{ bgcolor: 'rgb(136 84 192 / .2)', p: 3 }}>
             <div className="d-flex">
-              <Typography variant="h6">{card.quiz_name}</Typography>
+              <Typography variant="h6">{card.category_name}</Typography>
               <Typography variant="h6">#{+card.id + 1}</Typography>
             </div>
             <CardMedia
