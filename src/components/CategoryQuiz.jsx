@@ -45,7 +45,7 @@ function CategoryQuiz({ card, removeFavorite }) {
       favorites.splice(favoriteIndex, 1);
       localStorage.setItem('favorites', JSON.stringify(favorites));
       setIsFavorite(false);
-      removeFavorite(card.id);
+      if (removeFavorite) removeFavorite(card.id);
     }
   };
 
