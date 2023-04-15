@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Typography,
+  styled,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from '@emotion/styled';
-import CategotyQuiz from '../components/CategotyQuiz';
-import SearchField from '../components/SearchField';
+import CategoryQuiz from '../components/CategoryQuiz';
+import SearchField from '../components/Forms/SearchField';
 import { categoriesThunks } from '../store/modules/categories';
 
 const StyledHomePage = styled(Box)(() => ({
@@ -17,12 +21,34 @@ const StyledHomePage = styled(Box)(() => ({
   marginBottom: '50px',
 }));
 
-const StyledBox = styled(Box)(() => ({
+const StyledStack = styled(Stack)(() => ({
   marginBottom: '30px',
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+}));
+
+const StyledGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(1, 1fr)',
+  gap: '30px',
+  [theme.breakpoints.up('md')]: {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  },
+}));
+
+const StyledGridItem = styled(Box)(({ theme }) => ({
+  minWidth: '300px',
+  [theme.breakpoints.up('md')]: {
+    minWidth: '300px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    minWidth: '285px',
+  },
 }));
 
 function HomePage() {
@@ -41,7 +67,7 @@ function HomePage() {
 
   return (
     <StyledHomePage>
-      <StyledBox>
+      <StyledStack>
         <Typography
           sx={{
             mb: 3,
@@ -51,14 +77,14 @@ function HomePage() {
           What will you study today?
         </Typography>
         <SearchField />
-      </StyledBox>
-      <div className='main-screen-grid'>
+      </StyledStack>
+      <StyledGrid>
         {filterCategories.map((card) => (
-          <div className='main-screen-grid__item' key={card.id}>
-            <CategotyQuiz card={card} id={card.id} />
-          </div>
+          <StyledGridItem key={card.id}>
+            <CategoryQuiz card={card} />
+          </StyledGridItem>
         ))}
-      </div>
+      </StyledGrid>
     </StyledHomePage>
   );
 }

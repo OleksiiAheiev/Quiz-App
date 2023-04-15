@@ -8,17 +8,18 @@ import {
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import styled from '@emotion/styled';
 
-const style = {
+const StyledBox = styled(Box)(() => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  backgroundColor: '#fff',
   borderRadius: '5px',
   boxShadow: 24,
-};
+}));
 
 function BaseModal({
   open, handleClose, card,
@@ -32,7 +33,7 @@ function BaseModal({
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
-        <Box sx={style}>
+        <StyledBox >
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -65,7 +66,7 @@ function BaseModal({
               {card.description}
             </Typography>
           </Card>
-        </Box>
+        </StyledBox>
       </Modal>
     </div>
   );

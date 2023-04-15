@@ -3,6 +3,7 @@ import axiosCollections from './collections';
 
 const categories = {
   fetch: () => axios.get('/categories').then((data) => data),
+  create: (category) => axios.post('/categories', category).then((data) => data),
 };
 
 const html = {

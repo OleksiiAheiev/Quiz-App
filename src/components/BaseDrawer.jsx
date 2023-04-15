@@ -3,36 +3,15 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
-  Button,
   Drawer,
   Grid,
   Typography,
 } from '@mui/material';
-import styled from '@emotion/styled';
 import CategoryBtns from './CategoryBtns';
+import { QuizButton } from './styled/buttons';
 import logo from '../logo.webp';
 import { categoriesThunks } from '../store/modules/categories';
-
-const QuizButton = styled(Button)(() => ({
-  width: '110px',
-  backgroundColor: '#6c4298',
-  color: '#fff',
-  marginBottom: '20px',
-  '&:hover': {
-    backgroundColor: 'rgb(136 84 192 / .8)',
-    color: '#000',
-  },
-}));
-
-const ButtonWrapper = styled.div(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  backgroundColor: '#e5e5e5',
-  padding: '20px 30px 0',
-  borderRadius: '10px',
-  marginBottom: '20px',
-}));
+import { ButtonWrapper } from './styled/wrappers';
 
 function BaseDrawer({ open, handleClose }) {
   const { categories } = useSelector((state) => state.categoriesReducer);
@@ -59,7 +38,7 @@ function BaseDrawer({ open, handleClose }) {
             color: 'inherit',
             cursor: 'pointer',
           }}
-          to={'/quiz'}>
+          to={'/'}>
           <img
             style={{ padding: '0 30px', width: '100px' }}
             src={logo}
@@ -74,7 +53,7 @@ function BaseDrawer({ open, handleClose }) {
                 color: 'inherit',
                 cursor: 'pointer',
               }}
-              to={'quiz/create'}
+              to={'/create'}
             >
               <QuizButton
                 variant="contained"
@@ -89,7 +68,7 @@ function BaseDrawer({ open, handleClose }) {
                 color: 'inherit',
                 cursor: 'pointer',
               }}
-              to={'quiz/favorite'}
+              to={'/favorite'}
             >
               <QuizButton
                 variant="contained"

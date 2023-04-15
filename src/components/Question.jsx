@@ -6,19 +6,20 @@ import {
   CardMedia,
   Typography,
   styled,
-  Button,
 } from '@mui/material';
 import BaseModal from './Dialogs/BaseModal';
 import RadioButtonsGroup from './RadioButtonsGroup';
 import Timer from './Timer';
+import { QuestionBtn } from './styled/buttons';
 
-const StyledBtn = styled(Button)(() => ({
-  border: '#6c4298 1px solid',
-  backgroundColor: '#6c4298',
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: 'rgb(136 84 192 / .8)',
-    color: '#000',
+const QuizButton = styled(Card)(({ theme }) => ({
+  position: 'relative',
+  minWidth: '300px',
+  borderRadius: '5px',
+  height: '100%',
+  padding: '0 15px',
+  [theme.breakpoints.up('md')]: {
+    minWidth: '700px',
   },
 }));
 
@@ -47,7 +48,7 @@ function Question({
 
   return (
     <>
-      <Card className='quiz-card' card={currentCard} key={currentCard.id}>
+      <QuizButton card={currentCard} key={currentCard.id}>
         <div
           className="d-flex" >
           <h5>{quiz_name}</h5>
@@ -65,7 +66,7 @@ function Question({
               justifyContent: 'space-between',
               fontWeight: 'bold',
             }}
-            >
+          >
             {question}
             <Timer seconds={seconds} />
           </Typography>
@@ -77,22 +78,22 @@ function Question({
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <StyledBtn
+          <QuestionBtn
             onClick={handleOpen}
             variant="outlined"
           >
             <Typography>Show More</Typography>
-          </StyledBtn>
-          <StyledBtn
+          </QuestionBtn>
+          <QuestionBtn
             variant="outlined"
             onClick={handleNextCard}
             disabled={selectedAnswerIndex === null}
           >
             {isLastCard ? 'Finish' : 'Next'}
-          </StyledBtn>
+          </QuestionBtn>
         </CardActions>
         <BaseModal open={modal} handleClose={handleClose} card={currentCard} />
-      </Card >
+      </QuizButton >
     </>
   );
 }

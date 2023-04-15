@@ -47,7 +47,7 @@ function Header() {
               color: 'inherit',
               cursor: 'pointer',
             }}
-              to={'/quiz'}>
+              to={'/'}>
               <Typography variant="h5">
                 QUIZZ
               </Typography>

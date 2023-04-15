@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  Button,
   Card,
   Typography,
 } from '@mui/material';
-import getFormattedTime from '../helper';
+import getFormattedTime from '../../helper';
+import { ResultButton } from '../styled/buttons';
 
 const StyledResult = styled(Card)(() => ({
   display: 'flex',
@@ -30,16 +30,6 @@ const StyledSpan = styled.span(() => ({
   color: '#800080',
 }));
 
-const StyledButton = styled(Button)(() => ({
-  maxWidth: '150px',
-  backgroundColor: '#6c4298',
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: 'rgb(136 84 192 / .8)',
-    color: '#000',
-  },
-}));
-
 function QuizResults({ result, cards }) {
   return (
     <StyledResult>
@@ -59,9 +49,9 @@ function QuizResults({ result, cards }) {
       <StyledP>
         Wrong Answers:<StyledSpan> {result.wrongAnswers}</StyledSpan>
       </StyledP>
-      <StyledButton variant="contained" onClick={() => window.location.reload()}>
+      <ResultButton variant="contained" onClick={() => window.location.reload()}>
         Restart
-      </StyledButton>
+      </ResultButton>
     </StyledResult>
   );
 }

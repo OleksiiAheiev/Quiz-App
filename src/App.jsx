@@ -11,7 +11,7 @@ function App() {
       <div className="app">
         <BrowserRouter>
           <Routes>
-            <Route path='/quiz/*' element={<ScreenRoutes />} />
+            <Route path='/*' element={<ScreenRoutes />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>

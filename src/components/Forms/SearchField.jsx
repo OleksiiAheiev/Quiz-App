@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
-import { categoriesAction } from '../store/modules/categories';
+import { categoriesAction } from '../../store/modules/categories';
 
 const Search = styled('div')(() => ({
   width: '75%',
@@ -16,12 +16,15 @@ const StyledTextField = styled(TextField)(() => ({
   borderRadius: '30px',
   '& .MuiOutlinedInput-root': {
     borderRadius: '30px',
+    '& fieldset': {
+      borderColor: '#6c4298',
+    },
     '&:hover fieldset': {
-      borderColor: '#fff',
+      borderColor: '#6c4298',
     },
     '&.Mui-focused fieldset': {
       borderRadius: '30px',
-      borderColor: '#fff',
+      borderColor: '#6c4298',
     },
   },
   '& .MuiInputLabel-root': {

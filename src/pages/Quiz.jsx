@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { styled, Box } from '@mui/material';
 import Question from '../components/Question';
-import QuizResults from '../components/QuizResult';
+import QuizResults from '../components/Dialogs/QuizResult';
 import Loading from './Loading';
 import { quizThunks } from '../store/modules/quizzes';
+import QuizStart from '../components/QuizStart';
 
 const StyledQuizPage = styled(Box)(() => ({
   display: 'flex',
@@ -24,14 +25,14 @@ function Quiz() {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  const [time, setTime] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
   const [result, setResult] = useState({
     score: 0,
     correctAnswers: 0,
     wrongAnswers: 0,
     quizTime: 0,
   });
-
-  const [time, setTime] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -45,13 +46,13 @@ function Quiz() {
 
   useEffect(() => {
     let interval;
-    if (!showResults) {
+    if (!showResults && isStarted) {
       interval = setInterval(() => {
         setTime((prev) => prev + 1);
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [showResults]);
+  }, [showResults, isStarted]);
 
   const handleQuizEnd = () => {
     setResult((prev) => ({
@@ -107,8 +108,12 @@ function Quiz() {
 
   return (
     <StyledQuizPage>
-      {!showResults ? (
-        <Question
+      {!isStarted
+        && <QuizStart setTime={setTime} setIsStarted={setIsStarted} />
+      }
+      {isStarted
+        && !showResults
+        && <Question
           cards={cards}
           activeQuestion={activeQuestion}
           handleAnswerSelect={handleAnswerSelect}
@@ -116,9 +121,9 @@ function Quiz() {
           handleNextCard={handleNextCard}
           seconds={time}
         />
-      ) : (
-        <QuizResults result={result} cards={cards} />
-      )}
+      }
+      {showResults
+        && (<QuizResults result={result} cards={cards} />)}
     </StyledQuizPage>
   );
 }

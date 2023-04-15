@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MainTemplate from './Templates/MainTemplate';
 import Quiz from '../pages/Quiz';
 import HomePage from '../pages/HomePage';
@@ -8,14 +8,16 @@ import CreateQuiz from '../pages/CreateQuiz';
 import Favorite from '../pages/Favorite';
 
 function ScreenRoutes() {
+  const location = useLocation();
+
   return (
     <MainTemplate>
       <Routes>
         <Route path='*' element={<NotFound />} />
-        <Route index element={<HomePage />} path='/' />
-        <Route path='/:name' element={<Quiz />} />
-        <Route path='/quiz/create' element={<CreateQuiz />} />
-        <Route path='/quiz/favorite' element={<Favorite />} />
+        <Route index path='/' element={<HomePage />} />
+        <Route path='quiz/:name' element={<Quiz key={location.pathname} />} />
+        <Route path='/create' element={<CreateQuiz />} />
+        <Route path='/favorite' element={<Favorite />} />
       </Routes>
     </MainTemplate>
   );
