@@ -5,6 +5,14 @@ import Footer from './Footer';
 import Header from './Header';
 import NavMenu from './NavMenu';
 
+const Wrapper = styled(Box)(() => ({
+  display: 'flex',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  flexDirection: 'column',
+}));
+
 const Body = styled(Box)(() => ({
   padding: '20px',
   height: '100%',
@@ -14,13 +22,13 @@ function MainTemplate({ children }) {
   return (
     <>
       <NavMenu />
-      <div className="main">
+      <Wrapper>
         <Header />
         <Body>
           {children}
         </Body>
         <Footer />
-      </div>
+      </Wrapper>
     </>
   );
 }

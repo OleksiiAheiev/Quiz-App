@@ -1,19 +1,27 @@
 import React from 'react';
-import { Alert, Stack, AlertTitle } from '@mui/material';
+import {
+  Alert,
+  Stack,
+  AlertTitle,
+  styled,
+} from '@mui/material';
 
-function DescriptionAlerts() {
+const AlertStack = styled(Stack)(() => ({
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+}));
+
+function DescriptionAlert() {
   return (
-    <Stack
-      className="alertStyles"
-      spacing={2}
-      zIndex={111}>
+    <AlertStack spacing={2} zIndex={111}>
       <Alert severity="success">
         <AlertTitle>
           The Quizz <strong>is start!</strong>
         </AlertTitle>
       </Alert>
-    </Stack>
+    </AlertStack>
   );
 }
 
-export default DescriptionAlerts;
+export default DescriptionAlert;

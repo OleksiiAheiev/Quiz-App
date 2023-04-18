@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { QuestionBtn } from '../components/styled/buttons';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -15,6 +17,7 @@ const Text = styled(Typography)(() => ({
   fontSize: '48px',
   fontWeight: 'bold',
   textAlign: 'center',
+  color: '#6c4298',
 }));
 
 function NotFound() {
@@ -24,6 +27,22 @@ function NotFound() {
         <Text>404</Text>
         <Text>We`re sorry</Text>
         <Text>We can`t find the page you`re looking for</Text>
+        <Link to="/"></Link>
+        <Link
+          style={{
+            textDecoration: 'none',
+            color: 'inherit',
+            cursor: 'pointer',
+          }}
+          to={'/'}
+        >
+          <QuestionBtn
+            variant="contained"
+            size="small"
+          >
+            <Typography fontSize='medium'>Let`s go Home</Typography>
+          </QuestionBtn>
+        </Link>
       </Text>
     </Container>
   );

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
   Typography,
 } from '@mui/material';
 import BaseModal from './Dialogs/BaseModal';
@@ -18,18 +21,48 @@ const CardStyle = styled(Card)(() => ({
   fontWeight: 'bold',
 }));
 
-function CategotyQuiz({ card, id }) {
+function CategoryQuiz({ card, removeFavorite }) {
   const [modal, setModal] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    return favorites.some((favorite) => favorite.id === card.id);
+  });
+  const pathQuiz = card.category_name.split(' ').join('_').toLowerCase();
+
   const handleOpen = () => setModal(true);
   const handleClose = () => setModal(false);
 
-  const pathQuiz = card.category_name.split(' ').join('_').toLowerCase();
+  const handleToggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favoriteIndex = favorites.findIndex((favorite) => favorite.id === card.id);
+    if (favoriteIndex === -1) {
+      // Add the card to favorites
+      favorites.push(card);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      setIsFavorite(true);
+    } else {
+      // Remove the card from favorites
+      favorites.splice(favoriteIndex, 1);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      setIsFavorite(false);
+      if (removeFavorite) removeFavorite(card.id);
+    }
+  };
 
   return (
     <CardStyle>
       <div className='d-flex'>
         <h5>{card.category_name}</h5>
-        <h5>#{+id + 1}</h5>
+        <IconButton
+          onClick={handleToggleFavorite}
+          aria-label="add to favorites"
+        >
+          {isFavorite ? (
+            <FavoriteIcon sx={{ color: '#6c4298' }} />
+          ) : (
+              <FavoriteBorderIcon sx={{ color: '#6c4298' }} />
+          )}
+        </IconButton>
       </div>
       <CardMedia
         component='img'
@@ -85,4 +118,4 @@ function CategotyQuiz({ card, id }) {
   );
 }
 
-export default CategotyQuiz;
+export default CategoryQuiz;

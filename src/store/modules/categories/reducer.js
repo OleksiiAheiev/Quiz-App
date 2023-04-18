@@ -23,6 +23,10 @@ export const categoriesSlice = createSlice({
         ));
       }
     });
+    builder.addCase(thunks.createCategory.fulfilled, (state, { payload }) => {
+      state.categories.push(payload);
+      state.filterCategories = state.categories;
+    });
     builder.addCase(thunks.fetchCategories.fulfilled, (state, { payload }) => {
       state.categories = payload;
       state.filterCategories = payload;
