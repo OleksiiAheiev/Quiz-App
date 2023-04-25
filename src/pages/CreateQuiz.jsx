@@ -1,12 +1,29 @@
 import React from 'react';
-import { Stack, styled } from '@mui/material';
+import { Button, Stack, styled } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import InputField from '../components/Forms/InputField';
 import { categoriesThunks } from '../store/modules/categories';
 import { quizRules } from '../helper/rules';
-import { CreateQuizBtn } from '../components/styled/buttons';
+
+export const CreateQuizBtn = styled(Button)(() => ({
+  width: '200px',
+  color: '#6c4298',
+  marginBottom: '20px',
+  '&:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#000',
+  },
+  '&.MuiButton-outlined': {
+    borderColor: '#6c4298',
+    color: '#6c4298',
+  },
+  '&.MuiButton-outlined:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#fff',
+  },
+}));
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   margin: '0 auto',
@@ -44,12 +61,15 @@ const StyledInput = styled(InputField)(() => ({
 }));
 
 function CreateQuiz() {
-  const { control, handleSubmit, getValues } = useForm();
+  const {
+    control, handleSubmit, getValues, reset,
+  } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = () => {
     const data = getValues();
     dispatch(categoriesThunks.createCategory(data));
+    reset();
   };
 
   return (

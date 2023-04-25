@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -10,9 +11,8 @@ import {
 import BaseModal from './Dialogs/BaseModal';
 import RadioButtonsGroup from './RadioButtonsGroup';
 import Timer from './Timer';
-import { QuestionBtn } from './styled/buttons';
 
-const QuizButton = styled(Card)(({ theme }) => ({
+const QuizCard = styled(Card)(({ theme }) => ({
   position: 'relative',
   minWidth: '300px',
   borderRadius: '5px',
@@ -20,6 +20,16 @@ const QuizButton = styled(Card)(({ theme }) => ({
   padding: '0 15px',
   [theme.breakpoints.up('md')]: {
     minWidth: '700px',
+  },
+}));
+
+export const QuestionBtn = styled(Button)(() => ({
+  border: '#6c4298 1px solid',
+  backgroundColor: '#6c4298',
+  color: '#fff',
+  '&:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#000',
   },
 }));
 
@@ -48,7 +58,7 @@ function Question({
 
   return (
     <>
-      <QuizButton card={currentCard} key={currentCard.id}>
+      <QuizCard card={currentCard} key={currentCard.id}>
         <div
           className="d-flex" >
           <h5>{quiz_name}</h5>
@@ -93,7 +103,7 @@ function Question({
           </QuestionBtn>
         </CardActions>
         <BaseModal open={modal} handleClose={handleClose} card={currentCard} />
-      </QuizButton >
+      </QuizCard >
     </>
   );
 }

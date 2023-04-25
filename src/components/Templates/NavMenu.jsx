@@ -1,26 +1,41 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
-import { categoriesThunks } from '../../store/modules/categories';
+import { useSelector } from 'react-redux';
+import styled from '@emotion/styled';
+import {
+  Box, Button, Typography,
+} from '@mui/material';
 import logo from '../../logo.webp';
 import CategoryBtns from '../CategoryBtns';
-import { QuizButton } from '../styled/buttons';
-import { ButtonWrapper, NavWrapper } from '../styled/wrappers';
+
+export const QuizButton = styled(Button)(() => ({
+  width: '110px',
+  backgroundColor: '#6c4298',
+  color: '#fff',
+  marginBottom: '20px',
+  '&:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#000',
+  },
+}));
+
+export const NavWrapper = styled(Box)(() => ({
+  padding: '0 30px',
+  backgroundColor: '#fff',
+}));
+
+export const ButtonWrapper = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  backgroundColor: '#e5e5e5',
+  padding: '20px 30px 0',
+  borderRadius: '10px',
+  marginBottom: '20px',
+}));
 
 function NavMenu() {
   const { categories } = useSelector((state) => state.categoriesReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await dispatch(categoriesThunks.fetchCategories());
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
 
   return (
     <NavWrapper

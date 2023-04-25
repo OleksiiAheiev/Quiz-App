@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {
-  Card,
-  Typography,
+  Button, Card, Typography,
 } from '@mui/material';
 import getFormattedTime from '../../helper';
-import { ResultButton } from '../styled/buttons';
+
+export const ResultButton = styled(Button)(() => ({
+  maxWidth: '150px',
+  backgroundColor: '#6c4298',
+  color: '#fff',
+  '&:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#000',
+  },
+}));
 
 const StyledResult = styled(Card)(() => ({
   display: 'flex',

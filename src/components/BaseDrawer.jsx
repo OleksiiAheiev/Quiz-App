@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Box,
   Drawer,
@@ -8,25 +8,11 @@ import {
   Typography,
 } from '@mui/material';
 import CategoryBtns from './CategoryBtns';
-import { QuizButton } from './styled/buttons';
 import logo from '../logo.webp';
-import { categoriesThunks } from '../store/modules/categories';
-import { ButtonWrapper } from './styled/wrappers';
+import { QuizButton, ButtonWrapper } from './Templates/NavMenu';
 
 function BaseDrawer({ open, handleClose }) {
   const { categories } = useSelector((state) => state.categoriesReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await dispatch(categoriesThunks.fetchCategories());
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
-
   return (
     <Drawer anchor="left"
       open={open}

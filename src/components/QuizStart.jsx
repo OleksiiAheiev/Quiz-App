@@ -1,8 +1,26 @@
 import React from 'react';
 import {
-  Box, Typography, styled,
+  Box, Button, Typography, styled,
 } from '@mui/material';
-import { StyledBtn } from './styled/buttons';
+
+export const StyledBtn = styled(Button)(() => ({
+  marginBottom: '20px',
+  display: 'block',
+  width: '170px',
+  color: '#6c4298',
+  '&:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#000',
+  },
+  '&.MuiButton-outlined': {
+    borderColor: '#6c4298',
+    color: '#6c4298',
+  },
+  '&.MuiButton-outlined:hover': {
+    backgroundColor: 'rgb(136 84 192 / .8)',
+    color: '#fff',
+  },
+}));
 
 const StyledBox = styled(Box)(({ theme }) => ({
   display: 'flex',

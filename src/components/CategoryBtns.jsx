@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { StyledBtn } from './styled/buttons';
+import { StyledBtn } from './QuizStart';
 
 function CategoryBtns({ category, id }) {
   const pathQuiz = category.category_name.split(' ').join('_').toLowerCase();
