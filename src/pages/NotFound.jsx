@@ -27,14 +27,13 @@ function NotFound() {
         <Text>404</Text>
         <Text>We`re sorry</Text>
         <Text>We can`t find the page you`re looking for</Text>
-        <Link to="/"></Link>
         <Link
           style={{
             textDecoration: 'none',
             color: 'inherit',
             cursor: 'pointer',
           }}
-          to={'/'}
+          to={'/home'}
         >
           <QuestionBtn
             variant="contained"

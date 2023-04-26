@@ -12,14 +12,14 @@ import BaseModal from './Dialogs/BaseModal';
 import RadioButtonsGroup from './RadioButtonsGroup';
 import Timer from './Timer';
 
-const QuizCard = styled(Card)(({ theme }) => ({
+const QuizCard = styled(Card)(() => ({
   position: 'relative',
-  minWidth: '300px',
+  width: '330px',
   borderRadius: '5px',
   height: '100%',
   padding: '0 15px',
-  [theme.breakpoints.up('md')]: {
-    minWidth: '700px',
+  '@media (min-width: 768px)': {
+    width: '700px',
   },
 }));
 

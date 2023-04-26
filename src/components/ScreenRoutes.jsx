@@ -14,7 +14,7 @@ function ScreenRoutes() {
     <MainTemplate>
       <Routes>
         <Route path='*' element={<NotFound />} />
-        <Route index path='/' element={<HomePage />} />
+        <Route index path='/home' element={<HomePage />} />
         <Route path='quiz/:name' element={<Quiz key={location.pathname} />} />
         <Route path='/create' element={<CreateQuiz />} />
         <Route path='/favorite' element={<Favorite />} />

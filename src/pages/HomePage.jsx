@@ -29,25 +29,25 @@ const StyledStack = styled(Stack)(() => ({
   alignItems: 'center',
 }));
 
-const StyledGrid = styled(Box)(({ theme }) => ({
+const StyledGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, 1fr)',
   gap: '30px',
-  [theme.breakpoints.up('md')]: {
+  '@media (min-width: 768px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
-  [theme.breakpoints.up('lg')]: {
+  '@media (min-width: 1024px)': {
     gridTemplateColumns: 'repeat(3, 1fr)',
   },
 }));
 
-const StyledGridItem = styled(Box)(({ theme }) => ({
-  minWidth: '300px',
-  [theme.breakpoints.up('md')]: {
+const StyledGridItem = styled(Box)(() => ({
+  minWidth: '330px',
+  '@media (min-width: 750px)': {
     minWidth: '300px',
   },
-  [theme.breakpoints.up('lg')]: {
-    minWidth: '285px',
+  '@media (min-width: 1024px)': {
+    minWidth: '300px',
   },
 }));
 

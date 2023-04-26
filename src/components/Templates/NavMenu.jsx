@@ -34,6 +34,17 @@ export const ButtonWrapper = styled.div(() => ({
   marginBottom: '20px',
 }));
 
+export const ImgBox = styled(Box)(() => ({
+  padding: '0 30px',
+  width: '100px',
+  height: '90px',
+}));
+
+export const ImgStyle = styled.img(() => ({
+  width: '100px',
+  height: '90px',
+}));
+
 function NavMenu() {
   const { categories } = useSelector((state) => state.categoriesReducer);
 
@@ -48,12 +59,13 @@ function NavMenu() {
           color: 'inherit',
           cursor: 'pointer',
         }}
-        to={'/'}
+        to={'/home'}
       >
-        <img
-          style={{ padding: '0 30px', width: '100px' }}
-          src={logo}
-          alt="logo" />
+        <ImgBox>
+          <ImgStyle
+            src={logo}
+            alt="logo" />
+        </ImgBox>
       </Link>
       <ButtonWrapper>
         <Link

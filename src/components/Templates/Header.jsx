@@ -47,7 +47,7 @@ function Header() {
               color: 'inherit',
               cursor: 'pointer',
             }}
-              to={'/'}>
+              to={'/home'}>
               <Typography variant="h5">
                 QUIZZ
               </Typography>

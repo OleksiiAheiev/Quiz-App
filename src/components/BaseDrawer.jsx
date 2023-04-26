@@ -9,7 +9,9 @@ import {
 } from '@mui/material';
 import CategoryBtns from './CategoryBtns';
 import logo from '../logo.webp';
-import { QuizButton, ButtonWrapper } from './Templates/NavMenu';
+import {
+  QuizButton, ButtonWrapper, ImgBox, ImgStyle,
+} from './Templates/NavMenu';
 
 function BaseDrawer({ open, handleClose }) {
   const { categories } = useSelector((state) => state.categoriesReducer);
@@ -24,11 +26,12 @@ function BaseDrawer({ open, handleClose }) {
             color: 'inherit',
             cursor: 'pointer',
           }}
-          to={'/'}>
-          <img
-            style={{ padding: '0 30px', width: '100px' }}
-            src={logo}
-            alt="logo" />
+          to={'/home'}>
+          <ImgBox>
+            <ImgStyle
+              src={logo}
+              alt="logo" />
+          </ImgBox>
         </Link>
 
         <Grid sx={{ mb: 3 }}>
