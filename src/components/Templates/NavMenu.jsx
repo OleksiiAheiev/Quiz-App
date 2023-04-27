@@ -59,7 +59,7 @@ function NavMenu() {
           color: 'inherit',
           cursor: 'pointer',
         }}
-        to={'/home'}
+        to={'/'}
       >
         <ImgBox>
           <ImgStyle
