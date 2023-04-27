@@ -26,7 +26,7 @@ function BaseDrawer({ open, handleClose }) {
             color: 'inherit',
             cursor: 'pointer',
           }}
-          to={'/home'}>
+          to={'/'}>
           <ImgBox>
             <ImgStyle
               src={logo}

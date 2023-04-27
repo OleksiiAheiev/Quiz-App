@@ -33,7 +33,7 @@ function NotFound() {
             color: 'inherit',
             cursor: 'pointer',
           }}
-          to={'/home'}
+          to={'/'}
         >
           <QuestionBtn
             variant="contained"
